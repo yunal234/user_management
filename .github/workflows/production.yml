@@ -70,16 +70,16 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: yunal234/finalproject:${{ github.sha }} # Uses the Git SHA for tagging
+          tags: yunal234/devops:${{ github.sha }} # Uses the Git SHA for tagging
           platforms: linux/amd64,linux/arm64 # Multi-platform support
-          #cache-from: type=registry,ref=yunal234/finalproject:cache
+          cache-from: type=registry,ref=yunal234/finalproject:cache
           cache-to: type=inline,mode=max
           debug: true
 
       - name: Scan the Docker image
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'yunal234/finalproject:${{ github.sha }}'
+          image-ref: 'yunal234/devops:${{ github.sha }}'
           format: 'table'
           exit-code: '1' # Fail the job if vulnerabilities are found
           ignore-unfixed: true
